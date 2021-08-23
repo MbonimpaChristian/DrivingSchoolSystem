@@ -29,11 +29,19 @@ Route::get('/users/', 'UserController@index')->name('user.index');
 Route::get('/users/{id}', 'UserController@show')->name('user.show');
 
 Route::get('/students/show{id}', "StudentController@show");
+Route::get('/students', "StudentController@index");
+Route::get('/students/{id}/delete',"StudentController@destroy");
+Route::get('/students/{id}/edit',"StudentController@edit");
+Route::put('/students/{id}',"StudentController@update");
+
 
 Route::get('/teachers/', 'TeacherController@index')->name('teacher.index');
 Route::get('/teachers/create', 'TeacherController@create')->name('teacher.create');
 Route::post('/teachers/store', 'TeacherController@store')->name('teacher.store');
+Route::put('/teachers/edit', 'TeacherController@edit')->name('teacher.edit');
+
 Route::get('/teachers/mystudent', 'TeacherController@mystudent')->name('teacher.mystudent');
+Route::get('/teachers/{id}/edit', "TeacherController@edit");
 
 Route::get('/courses/', "CourseController@index")->name('course.index');
 Route::get('/courses/create', "CourseController@create");
@@ -42,9 +50,15 @@ Route::get('/courses/{id}/addvideo', "CourseController@addVideo");
 Route::post('/courses/video/store', "CourseController@storeVideo");
 
 Route::get('/courses/{id}/edit', "CourseController@edit");
-Route::get('/courses/{id}', "CourseController@show");
+Route::get('/courses/{id}', "CourseController@show")->middleware('paid');
 Route::PUT('/courses/{course}', "CourseController@update");
 
 Route::get('/payment/{id}/approvepayment', 'PaymentController@create')->name('payment.create');
 Route::post('/payment/store', 'PaymentController@store')->name('payment.store');
+
+Route::get('/TestQuestion/create',"TestQuestionController@create");
+Route::get('/TestQuestion/test',"TestQuestionController@test");
+Route::get('/TestQuestion/result',"TestQuestionController@result")->name('testquestion.result');
+Route::get('/testresults',"test_resultController@index");
 // Route::get('/courses/{course}/delete', "CourseController@destroy");
+// ->middleware('paid');

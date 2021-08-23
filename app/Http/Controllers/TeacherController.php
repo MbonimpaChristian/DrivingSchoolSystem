@@ -38,6 +38,18 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'nid' => 'required',
+            'telephone' => 'required',
+            'address' => 'required',
+            'category' => 'required',
+            'drivinglicense' => 'required',
+            'plateNo' => 'required',
+            'cartype' => 'required',
+        ]);
+
         User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
@@ -51,7 +63,7 @@ class TeacherController extends Controller
             'password' => Hash::make($request->input('email')),
             'roles'=> 'ROLE_TEACHER'
         ]);
-        
+
         $teachers = User::where('roles', 'ROLE_TEACHER')->get();
         return view('teacher.teacherlist')->with(['teachers'=> $teachers]);
     }
@@ -75,7 +87,9 @@ class TeacherController extends Controller
      */
     public function edit($id)
     {
-        //
+        $teacher= User::find($id);
+        return view('teacher.editteacher', ['teacher' => $teacher]);
+
     }
 
     /**
@@ -87,7 +101,33 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $teachers = User::find($id);
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'nid' => 'required',
+            'address' => 'required',
+            'telephone' => 'required',
+            'category' => 'required',
+            'drivinglicense' => 'required',
+            'plateNo' => 'required',
+            'cartype' => 'required',
+
+        ]);
+
+        $teachers->name = $request->input('name');
+        $teachers->email = $request->input('email');
+        $teachers->nid = $request->input('nid');
+        $teachers->address = $request->input('address');
+        $teachers->telephone = $request->input('telephone');
+        $teachers->category = $request->input('category');
+        $teachers->drivinglicense = $request->input('drivinglicense');
+        $teachers->plateNo = $request->input('plateNo');
+        $teachers->cartype = $request->input('cartype');
+
+        $teachers->save();
+        return redirect('/teachers');
     }
 
     /**
@@ -98,6 +138,8 @@ class TeacherController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $teachers = User::find($id);
+        $teachers->deleted();
+        return redirect('/teachers');
     }
 }

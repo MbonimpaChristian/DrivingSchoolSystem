@@ -73,15 +73,17 @@ class PaymentController extends Controller
             'P_date' => now(),
             'amount' => $amount
         ]);
-        $this->sendMessage('You have subscribed successful!!', $user->telephone);
+        // $this->sendMessage('You have subscribed successful!!', "+".$user->telephone);
 
-        if ($request->input('typeofcourse') == 2) {
-            StudentTeacher::create([
-                'user_id' => $request->input('studentid'),
-                'teacher_id' => $request->input('teachername')
-            ]);
+        if ($request->input('typeofcourse') == 2 && $request->input('teachername') !== "null") {
+            if ($request->input('typeofcourse') == 2) {
+                StudentTeacher::create([
+                    'user_id' => $request->input('studentid'),
+                    'teacher_id' => $request->input('teachername')
+                ]);
+            }
+            $this->sendMessage('You have been assigned student ' . $user->name . '!!', "+" . $teacher->telephone);
         }
-        $this->sendMessage('You have been assigned student '.$user->name.'!!', $teacher->telephone);
 
         return redirect()->route('redirection');
     }

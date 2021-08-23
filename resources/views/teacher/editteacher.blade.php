@@ -19,10 +19,10 @@
 
     <div class="row header-container justify-content-center">
         <div class="header">
-            <form action="/courses/{{$teacher->id}}" method="POST">
+            <form action="/teachers/edit" method="POST">
                 @csrf
                 @method('PUT')
-                
+
                 <div class="form-group">
                     <label>id:</label>
                     <input name="name" type="text" class="form-control"  value="{{$teacher->id}}">
@@ -32,7 +32,7 @@
                     <label>Names:</label>
                     <input name="name" type="text" class="form-control"  value="{{$teacher->name}}">
                   </div>
-                  
+
 
                   <div class="form-group">
                     <label>Email:</label>
@@ -79,11 +79,11 @@
                     <input name="cartype" type="text" class="form-control"  value="{{$teacher->cartype}}">
                   </div>
                   <input type="submit" class="btn-btn-info" value="Update">
-                
+
               </form>
         </div>
     </div>
-    
+
 
 
     <footer></footer>

@@ -111,7 +111,7 @@ class CourseController extends Controller
     public function delete($id)
     {
         $course = Course::find($id);
-        destroy();
+        // destroy();
         // return view('course.edit', ['course' => $course]);
     }
 
@@ -125,6 +125,11 @@ class CourseController extends Controller
     public function update(Request $request, $id)
     {
         $course = Course::find($id);
+
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+        ]);
 
         $course->name = $request->input('name');
         $course->price = $request->input('price');

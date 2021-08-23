@@ -1,38 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylsheet" href="{{asset('css/style.css')}}">
-    <title>Students</title>
-  </head>
   <body>
-    @include("navbar")
 
     <div class="row header-container justify-content-center">
         <div class="header">
-            <form action="/courses/{{$student->id}}" method="POST">
+            <form action="/students/{{$student->id}}" method="POST">
                 @csrf
                 @method('PUT')
-                
+
                 <div class="form-group">
-                    <label>id:</label>
-                    <input name="name" type="text" class="form-control"  value="{{$student->id}}">
+                    <input name="name" type="text" class="form-control"  value="{{$student->id}}" hidden>
                   </div>
 
                   <div class="form-group">
                     <label>Names:</label>
                     <input name="name" type="text" class="form-control"  value="{{$student->name}}">
                   </div>
-                  
+
 
                   <div class="form-group">
                     <label>Email:</label>
@@ -40,13 +25,8 @@
                   </div>
 
                   <div class="form-group">
-                    <label>Password:</label>
-                    <input name="password" type="text" class="form-control"  value="{{$student->password}}">
-                  </div>
-
-                  <div class="form-group">
                     <label>National id:</label>
-                    <input name="N_id" type="text" class="form-control"  value="{{$student->N_id}}">
+                    <input name="N_id" type="text" class="form-control"  value="{{$student->nid}}">
                   </div>
 
                   <div class="form-group">
@@ -59,11 +39,11 @@
                     <input name="telephone" type="text" class="form-control"  value="{{$student->telephone}}">
                   </div>
                   <input type="submit" class="btn-btn-info" value="Update">
-                
+
               </form>
         </div>
     </div>
-    
+
 
 
     <footer></footer>

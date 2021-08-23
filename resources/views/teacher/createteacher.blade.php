@@ -3,9 +3,9 @@
     <div class="col-3">
         <div class="card mb-3">
             <div class="card-body">
-                <h3 class="card-title">
-                    Actions
-                </h3>
+                {{-- <h3 class="card-title"> --}}
+                    {{-- Actions --}}
+                {{-- </h3>
                 <div>
                     <div class="list-group" id="list-tab" role="tablist">
                         <a
@@ -49,8 +49,8 @@
                             >Settings</a
                         >
                         --}}
-                    </div>
-                </div>
+                    {{-- </div> --}}
+                {{-- </div> --}}
             </div>
         </div>
     </div>
@@ -109,7 +109,7 @@
                             />
                         </div>
                     </div>
-                    
+
                     </div>
                     <div class="row">
                         <div class="col">

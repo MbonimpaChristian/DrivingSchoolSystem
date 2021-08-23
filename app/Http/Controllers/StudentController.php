@@ -14,7 +14,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::where('roles', 'ROLE_STUDENT')->get();
+        return view('student.studentlist')->with(['users' => $users]);
     }
 
     /**
@@ -57,7 +58,8 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('student.editstudent', ['student' => $user]);
     }
 
     /**
@@ -69,7 +71,22 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'N_id' => 'required',
+            'telephone' => 'required',
+
+        ]);
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->nid = $request->input('N_id');
+        $user->telephone = $request->input('telephone');
+        $user->save();
+        return redirect('/students');
     }
 
     /**
@@ -80,6 +97,8 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->back();
     }
 }

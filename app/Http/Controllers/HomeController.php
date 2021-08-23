@@ -43,7 +43,14 @@ class HomeController extends Controller
             $course2 = Course::find(2);
             $isSubbed = Payment::where('user_id', $user->id)->exists();
             $coursePaid = Payment::where('user_id', $user->id)->first();
-            $teacher = User::find(StudentTeacher::where('user_id', $user->id)->first()->teacher_id);
+            if (empty(StudentTeacher::all()->get(0))) {
+                $teacher = null;
+            }
+            if (StudentTeacher::where('user_id', $user->id)->first() == null) {
+                $teacher = null;
+            } else {
+                $teacher = User::find(StudentTeacher::where('user_id', $user->id)->first()->teacher_id);
+            }
             return view('student.show')->with(['user' => $user, 'teacher' => $teacher, 'isSubbed' => $isSubbed, 'coursePaid' => $coursePaid, 'course1' => $course1, 'course2' => $course2]);
         } else if ($roles == 'ROLE_ADMIN') {
             $users = User::where('roles', 'ROLE_STUDENT')->get();
@@ -91,7 +98,7 @@ class HomeController extends Controller
         $totalAmount = $payments->sum('amount');
 
         $pdf = PDF::loadView('pdf.daily', compact('students', 'payments', 'numberOfStudent', 'totalAmount', 'today'));
-        return $pdf->download('DailyReport-'.now().'.pdf');
+        return $pdf->download('DailyReport-' . now() . '.pdf');
     }
 
     public function getWeeklyReport()
@@ -106,7 +113,7 @@ class HomeController extends Controller
         $totalAmount = $payments->sum('amount');
 
         $pdf = PDF::loadView('pdf.weekly', compact('students', 'payments', 'numberOfStudent', 'totalAmount', 'daysAgo'));
-        return $pdf->download('WeeklyReport-'.now().'.pdf');
+        return $pdf->download('WeeklyReport-' . now() . '.pdf');
     }
 
 
@@ -122,10 +129,11 @@ class HomeController extends Controller
         $totalAmount = $payments->sum('amount');
 
         $pdf = PDF::loadView('pdf.monthly', compact('students', 'payments', 'numberOfStudent', 'totalAmount', 'daysAgo'));
-        return $pdf->download('MonthlyReport-'.now().'.pdf');
+        return $pdf->download('MonthlyReport-' . now() . '.pdf');
     }
 
-    public function getRangeReport(Request $request){
+    public function getRangeReport(Request $request)
+    {
 
         $from = $request->input('from');
         $to = $request->input('to');
@@ -136,6 +144,6 @@ class HomeController extends Controller
         $totalAmount = $payments->sum('amount');
 
         $pdf = PDF::loadView('pdf.range', compact('students', 'payments', 'numberOfStudent', 'totalAmount', 'to', 'from'));
-        return $pdf->download('Report-'.now().'.pdf');
+        return $pdf->download('Report-' . now() . '.pdf');
     }
 }

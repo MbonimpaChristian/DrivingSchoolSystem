@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Driving School System
                 </div>
 
                 <div class="links">
@@ -96,5 +96,6 @@
                 </div>
             </div>
         </div>
+        
     </body>
 </html>

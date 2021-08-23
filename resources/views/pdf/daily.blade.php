@@ -8,7 +8,9 @@
     </title>
 </head>
 <body>
-    <h1>Daily Report of {{now()->toFormattedDateString()}}</h1>
+    <img src="pro.jpg">
+    <h1 style="color: orange">United Driving School</h1>
+    <h2>Daily Report of {{now()->toFormattedDateString()}}</h2>
     <p>Total new students: {{$numberOfStudent}}</p>
     <p>Total amount paid: {{$totalAmount}}</p>
     <table class="table">
@@ -28,7 +30,7 @@
             <tr>
                 <th>{{$student->id}}</th>
                 <th>{{$student->name}}</th>
-                <th>{{$student->email}}</th>
+                 <th>{{$student->email}}</th>
                 <th>{{$student->nid}}</th>
                 <th>{{$student->address}}</th>
                 <th>{{$student->telephone}}</th>
@@ -37,7 +39,7 @@
         </tbody>
     </table>
 
-      <table class="table">
+      {{-- <table class="table">
         <thead class="thead-light">
           <tr>
             <th scope="col">id</th>
@@ -58,6 +60,6 @@
             </tr>
             @endforeach
         </tbody>
-      </table>
+      </table> --}}
 </body>
 </html>

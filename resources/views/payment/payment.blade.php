@@ -3,10 +3,10 @@
     <div class="col-3">
         <div class="card mb-3">
             <div class="card-body">
-                <h3 class="card-title">
+                {{-- <h3 class="card-title">
                     Actions
-                </h3>
-                <div>
+                </h3> --}}
+                {{-- <div>
                     <div class="list-group" id="list-tab" role="tablist">
                         <a
                             class="list-group-item list-group-item-action active"
@@ -46,7 +46,7 @@
                         >
                         --}}
                     </div>
-                </div>
+                {{-- </div> --}}
             </div>
         </div>
     </div>
@@ -68,6 +68,7 @@
                                     type="text"
                                     class="form-control"
                                     value="{{$user->name}}"
+                                    disabled
                                 />
                             </div>
                         </div>

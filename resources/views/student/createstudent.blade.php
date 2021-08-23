@@ -22,12 +22,12 @@
             <form action="/students" method="POST">
                 {{-- <form action={{url('/store')}} method="post"> --}}
                 @csrf
-                
+
                 <div class="form-group">
                     <label>Names:</label>
                     <input name="name" type="text" class="form-control"  placeholder="Course name">
                   </div>
-                  
+
 
                   <div class="form-group">
                     <label>Email:</label>
@@ -41,7 +41,7 @@
 
                   <div class="form-group">
                     <label>National id:</label>
-                    <input name="N_id" type="text" class="form-control"  placeholder="Your national Id">
+                    <input name="nid" type="text" class="form-control"  placeholder="Your national Id">
                   </div>
 
                   <div class="form-group">
@@ -54,11 +54,11 @@
                     <input name="telephone" type="text" class="form-control"  placeholder="Your phone number">
                   </div>
                   <input type="submit" class="btn-btn-info" value="save">
-                
+
               </form>
         </div>
     </div>
-    
+
 
 
     <footer></footer>

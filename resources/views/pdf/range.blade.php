@@ -16,7 +16,7 @@
           <tr>
             <th scope="col">id</th>
             <th scope="col">Names</th>
-            <th scope="col">Email</th>
+            {{-- <th scope="col">Email</th> --}}
             <th scope="col">N_id</th>
             <th scope="col">Address</th>
             <th scope="col">Telephone</th>
@@ -28,7 +28,7 @@
             <tr>
                 <th>{{$student->id}}</th>
                 <th>{{$student->name}}</th>
-                <th>{{$student->email}}</th>
+                {{-- <th>{{$student->email}}</th> --}}
                 <th>{{$student->nid}}</th>
                 <th>{{$student->address}}</th>
                 <th>{{$student->telephone}}</th>
