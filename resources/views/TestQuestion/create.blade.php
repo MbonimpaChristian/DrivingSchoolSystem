@@ -15,50 +15,48 @@
     <title>Test Questions</title>
   </head>
   <body>
-    @include("navbar")
 
-    <div class="row header-container justify-content-center">
-        <div class="header">
-            <form action="/TestQuestion" method="GET">
-                {{-- <form action={{url('/store')}} method="post"> --}}
-                @csrf
-
-                <div class="form-group">
-                    <label>QUESTIONS:</label>
-                    <input name="question" type="text" class="form-control"  placeholder="question please">
-                  </div>
-
-
-                  <div class="form-group">
-                    <label>CHOICE A:</label>
-                    <input name="choiceA" type="text" class="form-control"  placeholder="Your choice">
-                  </div>
-
-                  <div class="form-group">
-                    <label>CHOICE B:</label>
-                    <input name="choiceB" type="text" class="form-control"  placeholder="Your choice">
-                  </div>
-
-                  <div class="form-group">
-                    <label>CHOICE C:</label>
-                    <input name="choiceC" type="text" class="form-control"  placeholder="Your choice">
-                  </div>
-
-
-                  <div class="form-group">
-                    <label>CHOICE D:</label>
-                    <input name="choiceD" type="text" class="form-control"  placeholder="Your choice ">
-                  </div>
-
-                  <div class="form-group">
-                    <label>ANSWERS:</label>
-                    <input name="answer" type="text" class="form-control"  placeholder="The answer">
-                  </div>
-                  <input type="submit" class="btn-btn-info" value="save">
-
-              </form>
-        </div>
-    </div>
+            <div class="container" style="background-color: #fff;padding:40px;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="text-center">Add New Question</h2>
+                       <form action="" method="POST">
+                           @csrf
+                            <div class="form-group">
+                            <label for="exampleInputEmail1">Question</label>
+                            <input type="text" class="form-control" name="question" aria-describedby="emailHelp" placeholder="Enter Question">
+                          </div>
+                            <div class="form-group">
+                            <label for="exampleInputEmail1">Choice A</label>
+                            <input type="text" class="form-control" name="choiceA" aria-describedby="emailHelp" placeholder="Enter choice A">
+                          </div>
+                            <div class="form-group">
+                            <label for="exampleInputEmail1">Choice B</label>
+                            <input type="text" class="form-control" name="choiceB" aria-describedby="emailHelp" placeholder="Enter choice B">
+                          </div>
+                            <div class="form-group">
+                            <label for="exampleInputEmail1">Choice C</label>
+                            <input type="text" class="form-control" name="choiceC" aria-describedby="emailHelp" placeholder="Enter choice C">
+                          </div>
+                            <div class="form-group">
+                            <label for="exampleInputEmail1">Choice D</label>
+                            <input type="text" class="form-control" name="choiceD" aria-describedby="emailHelp" placeholder="Enter choice D">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect1">Select Answer</label>
+                            <select class="form-control" name="answer">
+                              <option selected disabled>select choice</option>
+                              <option value="choiceA">choice A</option>
+                              <option value="choiceB">choice B</option>
+                              <option value="choiceC">choice C</option>
+                              <option value="choiceD">choice D</option>
+                            </select>
+                          </div>
+                          <button type="submit" class="btn btn-primary"> Add New Question</button>
+                       </form>
+                    </div>
+                </div>
+            </div>
 
 
 

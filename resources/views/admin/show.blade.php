@@ -1,6 +1,6 @@
 @extends('layouts.app') @section('content')
 
-    <h1>Users</h1>
+    <h1>Latest Students</h1>
     <div class="card p-5 d-flex flex-row flex-wrap  justify-content-between">
         @if (count($users) > 0)
             {{-- <table id="userstable" class="table table-striped">
@@ -39,8 +39,9 @@
                                 <p class="card-text"><b>Email:</b>&nbsp; {{ $user->email }}</p>
                                 <p class="card-text"><b>NID:</b>&nbsp; {{ $user->nid }}</p>
                                 <p class="card-text"><b>Phone:</b>&nbsp; {{ $user->telephone }}</p>
-                                <a href="/payment/{{ $user->id }}/approvepayment" class="btn btn-success">Approve
-                                    payment</a></a>
+                                @if (!$user->hasTeacher)
+                                <a href="/payment/{{ $user->id }}/approvepayment" class="btn btn-success">Assign Teacher</a></a>
+                                @endif
                             </div>
                         </div>
 

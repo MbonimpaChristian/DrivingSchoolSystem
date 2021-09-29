@@ -14,12 +14,12 @@ class CourseSeeder extends Seeder
     {
             DB::table('courses')->insert([
                 'name' => 'Provisoire',
-                'price'=>20000
+                'price'=>100
             ]);
 
             DB::table('courses')->insert([
                 'name' => 'Driving license',
-                'price'=>140000
+                'price'=>140
             ]);
-}
+   }
 }

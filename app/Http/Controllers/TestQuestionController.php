@@ -27,13 +27,29 @@ class TestQuestionController extends Controller
      */
     public function create()
     {
-        $Question = new TestQuestion();
-        return view('TestQuestion.create', ['TestQuestion' => $Question]);
+        return view('TestQuestion.create');
     }
-
+    public function saveNewQuestion(Request $request)
+    {
+        $question = $request->input('question');
+        $answer = $request->input('answer');
+        $choiceA = $request->input('choiceA');
+        $choiceB = $request->input('choiceB');
+        $choiceC = $request->input('choiceC');
+        $choiceD = $request->input('choiceD');
+        TestQuestion::create([
+            'question'=>$question,
+            'answer'=>$answer,
+            'choiceA'=>$choiceA,
+            'choiceB'=>$choiceB,
+            'choiceC'=>$choiceC,
+            'choiceD'=>$choiceD
+        ]);
+        return redirect('/TestQuestion/test');
+    }
     public function test()
     {
-        $questions = TestQuestion::all()->random(5);
+        $questions = TestQuestion::get();
         return view('TestQuestion.test', ['questions' => $questions]);
     }
 

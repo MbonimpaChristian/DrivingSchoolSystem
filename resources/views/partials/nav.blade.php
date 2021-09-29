@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light bg-warning shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            DSSS(Driving Schools)
+        <a class="navbar-brand" href="{{ url('/') }}"><img src="/images/United.png" style="width: 15%;border-radius:50%;">
+            United Driving School
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

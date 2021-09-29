@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Driving School') }}</title>
+    <title>United Driving School</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -261,7 +261,7 @@
 
         <div class="footer-left">
 
-            <h3>DSSS<span>Driving School</span></h3>
+            <h3>United<span>Driving School</span></h3>
 
             {{-- <h3>DSSS<span>Driving School System</span></h3> --}}
 

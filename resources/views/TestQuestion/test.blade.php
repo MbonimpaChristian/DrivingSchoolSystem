@@ -2,7 +2,18 @@
 
 @section('content')
     <form class="card" action="{{ route('testquestion.result') }}" method="GET">
-        <h1 class="text-center">TEST</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="text-center">TEST </h1>
+                </div>
+                @if (Auth::user()->roles == 'ROLE_ADMIN')
+                  <div class="col-md-6">
+                    <a href="/TestQuestion/create" class="btn btn-primary">Add new Question</a>
+                  </div>
+                @endif
+            </div>
+        </div>
         @foreach ($questions as $question)
             <fieldset class="m-2 p-2 form-group" id="{{ $question->id }}">
                 <div class="row">

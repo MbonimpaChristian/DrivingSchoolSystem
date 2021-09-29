@@ -35,8 +35,11 @@
 
 
         @else
-            <br />
-            You have no Students
+            <div class="alert alert-danger">
+                <h4 class="text-center">
+                    You have no Students
+                </h4>
+            </div>
         @endif
     </div>
 @endsection

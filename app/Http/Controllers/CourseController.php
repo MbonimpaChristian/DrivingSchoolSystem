@@ -21,7 +21,7 @@ class CourseController extends Controller
         $courses = Course::all();
         $user = Auth::user();
         $isAuthAdmin = $user->roles == "ROLE_ADMIN";
-        $isSubbed = Payment::where('user_id', $user->id)->exists();
+        $isSubbed = Payment::where('user_id', $user->id)->whereDate('P_date', '>=', now()->subMonths(1))->exists();
         return view('course.courselist', ['courses' => $courses, 'user' => $user, 'isSubbed' => $isSubbed, 'isAuthAdmin' => $isAuthAdmin]);
     }
 

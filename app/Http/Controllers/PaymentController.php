@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Services_Twilio;
 // use Twilio\Rest\Client;
 use Twilio\Http\CurlClient;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
@@ -30,10 +32,12 @@ class PaymentController extends Controller
     public function create($id)
     {
         $courses = Course::all();
+        // $authenticatedStudent = Auth::user()->id;
         $teachers = User::where('roles', 'ROLE_TEACHER')->get();
         $user = User::find($id);
-
-        return view('payment.payment')->with(['user' => $user, 'courses' => $courses, 'teachers' => $teachers]);
+        $selectedCourseId = Payment::where('User_id', $user->id)->value('Course_id');
+        // return view('payment.payment')->with(['user' => $user, 'courses' => $courses, 'teachers' => $teachers]);
+        return view('payment.payment', compact('user', 'courses', 'teachers', 'selectedCourseId'));
     }
 
     private function sendMessage($message, $recipients)
@@ -43,6 +47,7 @@ class PaymentController extends Controller
         $twilio_number = getenv("TWILIO_NUMBER");
         $client = new \Twilio\Rest\Client($account_sid, $auth_token);
         $curlOptions = [CURLOPT_SSL_VERIFYHOST => false, CURLOPT_SSL_VERIFYPEER => false];
+        // dd($recipients);
         $client->setHttpClient(new CurlClient($curlOptions));
         $client->messages->create(
             $recipients,
@@ -58,34 +63,42 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->input('typeofcourse') == 1) {
-            $amount = 20000;
-        } else {
-            $amount = 140000;
-        }
-
-        $user = User::find($request->input('studentid'));
-        $teacher = User::find($request->input('teachername'));
-
-        Payment::create([
-            'user_id' => $request->input('studentid'),
-            'course_id' => $request->input('typeofcourse'),
-            'P_date' => now(),
-            'amount' => $amount
+        // return $request->all();
+        $student = User::find($request->input('studentid'));
+        $teacher = User::find($request->input('teacherId'));
+        $paymentToUpdate = Payment::where('User_id', $student->id)->update([
+            'teacher_id' => $teacher->id
         ]);
-        // $this->sendMessage('You have subscribed successful!!', "+".$user->telephone);
-
-        if ($request->input('typeofcourse') == 2 && $request->input('teachername') !== "null") {
-            if ($request->input('typeofcourse') == 2) {
-                StudentTeacher::create([
-                    'user_id' => $request->input('studentid'),
-                    'teacher_id' => $request->input('teachername')
-                ]);
-            }
-            $this->sendMessage('You have been assigned student ' . $user->name . '!!', "+" . $teacher->telephone);
+        $studentToUpdate = User::find($student->id)->update([
+            'hasTeacher' => true,
+            'teacherId' => $teacher->id
+        ]);
+        try {
+            $this->sendMessage('You have been assigned student ' . $student->name . '!!', $teacher->telephone);
+            $this->sendMessage('You have been assigned teacher ' . $teacher->name . 'contact them on ' . $teacher->telephone .' .', $teacher->telephone);
+        } catch (\Exception $ex) {
+            return redirect()->route('redirection');
         }
-
         return redirect()->route('redirection');
+
+
+        // Payment::create([
+        //     'user_id' => $request->input('studentid'),
+        //     'course_id' => $request->input('typeofcourse'),
+        //     'P_date' => now(),
+        //     'amount' => $amount
+        // ]);
+        // // $this->sendMessage('You have subscribed successful!!', "+".$user->telephone);
+
+        // if ($request->input('typeofcourse') == 2 && $request->input('teachername') !== "null") {
+        //     if ($request->input('typeofcourse') == 2) {
+        //         StudentTeacher::create([
+        //             'user_id' => $request->input('studentid'),
+        //             'teacher_id' => $request->input('teachername')
+        //         ]);
+        //     }
+        // }
+
     }
 
     /**

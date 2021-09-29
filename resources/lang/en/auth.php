@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'Ibanga na Email mwashyizemo ntago zihuye nibyo dufite mububiko bwacu .',
+    'failed' => 'Ibanga na Imeyili mwashyizemo ntago zihuye nibyo dufite mububiko bwacu .',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
 ];

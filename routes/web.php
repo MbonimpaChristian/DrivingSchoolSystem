@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Student\StudentPaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,11 +55,16 @@ Route::get('/courses/{id}', "CourseController@show")->middleware('paid');
 Route::PUT('/courses/{course}', "CourseController@update");
 
 Route::get('/payment/{id}/approvepayment', 'PaymentController@create')->name('payment.create');
-Route::post('/payment/store', 'PaymentController@store')->name('payment.store');
+Route::put('/payment/store', 'PaymentController@store')->name('payment.store');
 
 Route::get('/TestQuestion/create',"TestQuestionController@create");
+Route::post('/TestQuestion/create',"TestQuestionController@saveNewQuestion");
 Route::get('/TestQuestion/test',"TestQuestionController@test");
 Route::get('/TestQuestion/result',"TestQuestionController@result")->name('testquestion.result');
 Route::get('/testresults',"test_resultController@index");
+
+
+Route::post('/courses/payWithFlutterWave',[StudentPaymentController::class,'payWithFlutterWave'])->name('payWithFlutterWave');
+Route::get('/courses/payWithFlutterWave/callback', [StudentPaymentController::class, 'callback'])->name('callback');
 // Route::get('/courses/{course}/delete', "CourseController@destroy");
 // ->middleware('paid');

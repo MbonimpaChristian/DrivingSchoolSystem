@@ -56,6 +56,7 @@
             <div class="card-body">
                 <h3 class="card-title">Save Payment</h3>
                 <form action="/payment/store" method="POST">
+                    <input type="hidden" name="_method" value="PUT">
                     {{-- <form action={{url('/teachers/store')}} method="post">
                     --}} @csrf
                     <div class="row">
@@ -80,7 +81,11 @@
                                 <select
                                 class="form-control" name="typeofcourse" id="">
                                     @foreach($courses as $course)
-                                    <option value="{{$course->id}}">{{$course->name}}</option>
+                                    <option disabled value="{{$course->id}}" @if ($course->id == $selectedCourseId)
+                                       @php
+                                           echo "selected";
+                                       @endphp
+                                    @endif >{{$course->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -89,8 +94,8 @@
                             <div class="form-group">
                                 <label>Teacher Name:</label>
                                 <select
-                                class="form-control" name="teachername" id="">
-                                    <option value="null">---none---</option>
+                                class="form-control" name="teacherId" id="">
+                                    <option selected disabled value="null">Select Teacher</option>
                                     @foreach($teachers as $teacher)
                                     <option value="{{$teacher->id}}">{{$teacher->name}}</option>
                                     @endforeach
@@ -102,7 +107,7 @@
                     <input
                         type="submit"
                         class="btn btn-info"
-                        value="Approved"
+                        value="Assign Teacher"
                     />
                 </form>
             </div>

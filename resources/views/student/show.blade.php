@@ -6,7 +6,10 @@
                     <div class="card mb-3">
                         <div class="card-body">
                             <h3 class="card-title">{{ $course1->name }}</h3>
-                            <h6 class="card-subtitle mb-2 text-muted">{{ $course1->price }}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ $course1->price }} Frws</h6>
+                            <p class="card-text">
+                                Teacher: {{ $teacher }} <br>
+                            </p>
                             <p class="card-text">
                                 Date: {{ $coursePaid->P_date }} <br>
                             </p>
@@ -19,13 +22,13 @@
                     <div class="card mb-3">
                         <div class="card-body">
                             <h3 class="card-title">{{ $course2->name }}</h3>
-                            <h6 class="card-subtitle mb-2 text-muted">{{ $course2->price }}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ $course2->price }} frws</h6>
                             <p class="card-text">
-                                Date: {{ $course2->date }} <br>
+                                {{-- Date: {{ $course2->date }} <br> --}}
                                 Timeleft:20 days
                             </p>
-                            <a href="{{ action('UserController@show', [$teacher->id]) }}" class="btn btn-primary">View
-                                Teacher</a>
+                            {{-- <a href="{{ action('UserController@show', [$teacher->id]) }}" class="btn btn-primary">View
+                                Teacher</a> --}}
                         </div>
                     </div>
                 @endif

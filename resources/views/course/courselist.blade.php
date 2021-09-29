@@ -33,13 +33,18 @@
                                     <a href="/courses/{{ $course->id }}/edit" class="btn btn-primary">Edit</a>
                                     <a href="/courses/{{ $course->id }}/delete" class="btn btn-danger">Delete</a>
                                 @endif
-                                @if ($course->name == 'Provisoire')
+                                {{-- @if ($course->name == 'Provisoire')
                                     <a href="https://flutterwave.com/pay/wmpc52l8p3z1" class="btn btn-success"
                                         target="_blank">Pay</a>
                                 @else
                                     <a href="https://flutterwave.com/pay/s9eancmo72yk" class="btn btn-success"
                                         target="_blank">Pay</a>
-                                @endif
+                                @endif --}}
+                                <form action="{{route('payWithFlutterWave')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="courseId" value="{{$course->id}}">
+                                    <button class="btn btn-success" type="submit">subscribe</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
