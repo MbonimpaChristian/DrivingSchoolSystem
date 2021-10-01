@@ -8,7 +8,6 @@ use App\StudentTeacher;
 use App\User;
 use Illuminate\Http\Request;
 use Services_Twilio;
-// use Twilio\Rest\Client;
 use Twilio\Http\CurlClient;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;

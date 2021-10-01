@@ -27,14 +27,10 @@
                     <a class="list-group-item list-group-item-action"
                         href="{{ action('test_resultController@index') }}">Test Result</a>
                 @endif
-                <a class="list-group-item list-group-item-action"
-                    href="{{ action('TestQuestionController@test') }}">Test</a>
-                {{-- <a class="list-group-item list-group-item-action" data-toggle="list"
-                    href="#list-profile" role="tab" aria-controls="profile">Profile</a>
-                <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-messages" role="tab"
-                    aria-controls="messages">Messages</a>
-                <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-settings" role="tab"
-                    aria-controls="settings">Settings</a> --}}
+               @if (\App\Payment::where('User_id',Auth::user()->id)->exists())
+               <a class="list-group-item list-group-item-action"
+               href="{{ action('TestQuestionController@test') }}">Test</a>
+               @endif
             </div>
         </div>
     </div>

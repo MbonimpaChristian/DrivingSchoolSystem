@@ -39,10 +39,10 @@ Route::put('/students/{id}',"StudentController@update");
 Route::get('/teachers/', 'TeacherController@index')->name('teacher.index');
 Route::get('/teachers/create', 'TeacherController@create')->name('teacher.create');
 Route::post('/teachers/store', 'TeacherController@store')->name('teacher.store');
-Route::put('/teachers/edit', 'TeacherController@edit')->name('teacher.edit');
+Route::get('/teachers/{id}/edit', 'TeacherController@edit')->name('teacher.edit');
+Route::put('/teachers/{id}/edit', 'TeacherController@update')->name('teacher.update');
 
 Route::get('/teachers/mystudent', 'TeacherController@mystudent')->name('teacher.mystudent');
-Route::get('/teachers/{id}/edit', "TeacherController@edit");
 
 Route::get('/courses/', "CourseController@index")->name('course.index');
 Route::get('/courses/create', "CourseController@create");
@@ -62,6 +62,7 @@ Route::post('/TestQuestion/create',"TestQuestionController@saveNewQuestion");
 Route::get('/TestQuestion/test',"TestQuestionController@test");
 Route::get('/TestQuestion/result',"TestQuestionController@result")->name('testquestion.result');
 Route::get('/testresults',"test_resultController@index");
+Route::get('/command',[StudentPaymentController::class,'checkCommand']);
 
 
 Route::post('/courses/payWithFlutterWave',[StudentPaymentController::class,'payWithFlutterWave'])->name('payWithFlutterWave');

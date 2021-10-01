@@ -12,22 +12,20 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylsheet" href="{{asset('css/style.css')}}">
-    <title>Teachers</title>
+    <title>Teacher</title>
   </head>
   <body>
-    @include("navbar")
+ <div class="alert alert-info">
+     <h4 class="text-center">
+         Edit {{ $teacher->name }}
+     </h4>
+ </div>
 
     <div class="row header-container justify-content-center">
         <div class="header">
-            <form action="/teachers/edit" method="POST">
+            <form action="{{ route('teacher.update',$teacher->id) }}" method="POST">
                 @csrf
-                @method('PUT')
-
-                <div class="form-group">
-                    <label>id:</label>
-                    <input name="name" type="text" class="form-control"  value="{{$teacher->id}}">
-                  </div>
-
+                <input type="hidden" name="_method" value="put">
                   <div class="form-group">
                     <label>Names:</label>
                     <input name="name" type="text" class="form-control"  value="{{$teacher->name}}">
@@ -39,14 +37,10 @@
                     <input name="email" type="text" class="form-control"  value="{{$teacher->email}}">
                   </div>
 
-                  <div class="form-group">
-                    <label>Password:</label>
-                    <input name="password" type="text" class="form-control"  value="{{$teacher->password}}">
-                  </div>
 
                   <div class="form-group">
                     <label>National id:</label>
-                    <input name="N_id" type="text" class="form-control"  value="{{$teacher->N_id}}">
+                    <input name="N_id" type="text" class="form-control"  value="{{$teacher->nid}}">
                   </div>
 
                   <div class="form-group">
@@ -78,7 +72,7 @@
                     <label>Cartype&Model:</label>
                     <input name="cartype" type="text" class="form-control"  value="{{$teacher->cartype}}">
                   </div>
-                  <input type="submit" class="btn-btn-info" value="Update">
+                  <button type="submit" class="btn btn-info">Update</button>
 
               </form>
         </div>
