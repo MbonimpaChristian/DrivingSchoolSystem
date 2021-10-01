@@ -49,7 +49,7 @@
                             <td>{{ $teacher->plateNo }}</td>
                             <td>{{ $teacher->cartype }}</td>
                             <td>
-                                <a href="/teachers/{{ $teacher->id }}/edit" class="btn btn-primary">Edit</a>
+                                <a href="{{ route('teacher.edit',$teacher->id) }}" class="btn btn-primary">Edit</a>
 
                                 {{-- @if ($course->name == 'Provisoire')
                                     <a href="https://flutterwave.com/pay/wmpc52l8p3z1" class="btn btn-success">Payment</a>

@@ -101,32 +101,18 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $teachers = User::find($id);
+        $teacher = User::find($id);
+        $teacher->name = $request->input('name');
+        $teacher->email = $request->input('email');
+        $teacher->nid = $request->input('nid');
+        $teacher->address = $request->input('address');
+        $teacher->telephone = $request->input('telephone');
+        $teacher->category = $request->input('category');
+        $teacher->drivinglicense = $request->input('drivinglicense');
+        $teacher->plateNo = $request->input('plateNo');
+        $teacher->cartype = $request->input('cartype');
 
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'nid' => 'required',
-            'address' => 'required',
-            'telephone' => 'required',
-            'category' => 'required',
-            'drivinglicense' => 'required',
-            'plateNo' => 'required',
-            'cartype' => 'required',
-
-        ]);
-
-        $teachers->name = $request->input('name');
-        $teachers->email = $request->input('email');
-        $teachers->nid = $request->input('nid');
-        $teachers->address = $request->input('address');
-        $teachers->telephone = $request->input('telephone');
-        $teachers->category = $request->input('category');
-        $teachers->drivinglicense = $request->input('drivinglicense');
-        $teachers->plateNo = $request->input('plateNo');
-        $teachers->cartype = $request->input('cartype');
-
-        $teachers->save();
+        $teacher->save();
         return redirect('/teachers');
     }
 
